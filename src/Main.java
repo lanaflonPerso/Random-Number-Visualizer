@@ -11,6 +11,8 @@ import java.util.Random;
 public class Main {
     JFreeChart chart;
     DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+    final int RNCAP = 100;
+    final int RNNUM = 100;
 
     public static void main(String[] args) {
         Main mn = new Main();
@@ -19,7 +21,7 @@ public class Main {
     public void start() {
         createChart();
         show();
-        testRandomInts(100);
+        testRandomInts(RNNUM,RNCAP);
     }
     public void incrementValue(int value) {
         try {
@@ -39,7 +41,7 @@ public class Main {
         frame.pack();
         frame.setVisible(true);
     }
-    public void testRandomInts(int numberOfRandomNumbers) {
+    public void testRandomInts(int numberOfRandomNumbers, int randomNumberCap) {
         Random rn = new Random();
         for(int i = 0; i< numberOfRandomNumbers;i++) {
             synchronized (this) {
@@ -49,7 +51,7 @@ public class Main {
                     ex.printStackTrace();
                 }
             }
-            incrementValue(rn.nextInt(100));
+            incrementValue(rn.nextInt(randomNumberCap));
         }
 
     }
